@@ -1,3 +1,6 @@
+import 'package:app/fluttersignal.dart';
+import 'package:flutter/services.dart';
+
 import '/config/decoders.dart';
 import '/config/design.dart';
 import '/config/theme.dart';
@@ -8,6 +11,17 @@ import '/config/localization.dart';
 class AppProvider implements NyProvider {
   @override
   boot(Nylo nylo) async {
+
+    // 设置坚屏
+    await SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
+
+    await FlutterSignal.instance
+        .init(debugMode: getEnv('APP_DEBUG')
+    );
+
+
     await NyLocalization.instance.init(
         localeType: localeType,
         languageCode: languageCode,

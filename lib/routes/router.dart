@@ -1,4 +1,7 @@
-import '/resources/pages/home_page.dart';
+import 'package:flutter_master/resources/pages/app_page.dart';
+import 'package:flutter_master/resources/pages/flutter_page.dart';
+import 'package:flutter_master/resources/pages/shop_page.dart';
+
 import 'package:nylo_framework/nylo_framework.dart';
 
 /*
@@ -13,9 +16,8 @@ import 'package:nylo_framework/nylo_framework.dart';
 */
 
 appRouter() => nyRoutes((router) {
-  router.route(HomePage.path, (context) => HomePage(), initialRoute: true);
-  // Add your routes here
-
-  // router.route(NewPage.path, (context) => NewPage(), transition: PageTransitionType.fade);
+  router.route(FlutterPage.path, (context) => FlutterPage());
+  router.route(ShopPage.path, (context) => ShopPage());
+  router.route(AppPage.path, (context) => AppPage(), initialRoute: true);
 
 });

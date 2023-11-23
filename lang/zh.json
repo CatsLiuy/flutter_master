@@ -2,5 +2,9 @@
   "documentation": "documentation",
   "changelog": "日志",
   "micro-framework for Flutter": "micro-framework for Flutter",
-  "hello": "你好 {{name}}"
+  "hello": "你好 {{name}}",
+  "Home": "首页",
+  "Categories": "分类",
+  "Cart": "购物车",
+  "Mine": "我的"
 }

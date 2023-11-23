@@ -1,5 +1,4 @@
-import 'package:flutter_master/app/models/user.dart';
-import 'package:flutter_master/app/networking/api_service.dart';
+import 'package:flutter_master/app/controllers/flutter_controller.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 import 'package:nylo_framework/theme/helper/ny_theme.dart';
 import 'package:flutter/material.dart';
@@ -7,13 +6,11 @@ import '/bootstrap/extensions.dart';
 import '/resources/widgets/logo_widget.dart';
 import '/resources/widgets/safearea_widget.dart';
 import '/bootstrap/helpers.dart';
-import '/app/controllers/home_controller.dart';
 
-class HomePage extends NyPage<HomeController> {
+class FlutterPage extends NyPage<FlutterController> {
 
-  static String path = '/home';
+  static String path = '/flutter';
 
-  ApiService _apiService = ApiService();
   @override
   init() async {
 

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_master/app/models/user.dart';
-import 'package:flutter_master/app/networking/api_service.dart';
+import 'package:flutter_master/app/networking/flutter_service.dart';
 import '/resources/widgets/logo_widget.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'controller.dart';
 
-class HomeController extends Controller {
+class FlutterController extends Controller {
 
-  ApiService _apiService = ApiService();
+  FlutterService _apiService = FlutterService();
 
   @override
   construct(BuildContext context) {
@@ -27,8 +27,7 @@ class HomeController extends Controller {
     // await launchUrl(Uri.parse(
     //     "https://github.com/nylo-core/framework/blob/5.x/CHANGELOG.md"));
 
-    dynamic users = await _apiService.fetchUsers('get');
-    print('fetchUsers 2 ${users}');
+   await _apiService.fetchUsers('get');
   }
 
   onTapYouTube() async {

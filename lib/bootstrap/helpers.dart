@@ -1,4 +1,7 @@
+import 'package:app/fluttersignal.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_master/app/models/user.dart';
+import 'package:flutter_master/bootstrap/shared_pref/shared_key.dart';
 import '/resources/themes/styles/color_styles.dart';
 import '/config/decoders.dart';
 import '/config/events.dart';
@@ -6,6 +9,14 @@ import 'package:nylo_framework/nylo_framework.dart';
 
 // Add your helper methods here
 // ...
+
+
+Future<User?> getUser() async =>
+    (await (NyStorage.read<User>(SharedKey.authUser)));
+
+Future appSignal(Function(FlutterSignal api) api) async {
+  return await api(FlutterSignal.instance);
+}
 
 /// helper to find correct color from the [context].
 class ThemeColor {
@@ -42,3 +53,30 @@ api<T>(dynamic Function(T request) request,
 
 /// Event helper
 event<T>({Map? data}) async => await nyEvent<T>(params: data, events: events);
+
+navigatorPush(BuildContext context,
+    {required String routeName,
+      Object? arguments,
+      bool forgetAll = false,
+      int? forgetLast}) {
+  if (forgetAll) {
+    Navigator.of(context).pushNamedAndRemoveUntil(
+        routeName, (Route<dynamic> route) => false,
+        arguments: arguments);
+  }
+  if (forgetLast != null) {
+    int count = 0;
+    Navigator.of(context).popUntil((route) {
+      return count++ == forgetLast;
+    });
+  }
+  Navigator.of(context).pushNamed(routeName, arguments: arguments);
+}
+
+checkImagePath(String skuImage){
+  String imagePath = '';
+  if(!skuImage.startsWith("http")){
+    imagePath = '${getEnv('APP_ASSET_URL')}/${skuImage}';
+  }
+  return imagePath ;
+}

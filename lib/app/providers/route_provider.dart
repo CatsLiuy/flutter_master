@@ -11,6 +11,7 @@ class RouteProvider implements NyProvider {
 
   @override
   afterBoot(Nylo nylo) async {
-    nylo.initRoutes();
+    String initialRoute = '/app';
+    nylo.setInitialRoute(initialRoute);
   }
 }

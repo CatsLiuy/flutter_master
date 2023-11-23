@@ -1,8 +1,13 @@
-import '/app/controllers/home_controller.dart';
+import 'package:flutter_master/app/controllers/flutter_controller.dart';
+import 'package:flutter_master/app/models/banner.dart';
+import 'package:flutter_master/app/models/navigator.dart';
+import 'package:flutter_master/app/models/storey.dart';
+import 'package:flutter_master/app/networking/shop_service.dart';
+
 import '/app/models/user.dart';
 import '/app/networking/dio/base_api_service.dart';
 import 'package:nylo_framework/nylo_framework.dart';
-import '/app/networking/api_service.dart';
+import '/app/networking/flutter_service.dart';
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +22,12 @@ import '/app/networking/api_service.dart';
 
 final Map<Type, dynamic> modelDecoders = {
   List<User>: (data) => List.from(data).map((json) => User.fromJson(json)).toList(),
+  // List<BannerData>: (data) => List.from(data).map((json) => BannerData.fromJson(json)).toList(),
   //
   User: (data) => User.fromJson(data),
+  MobileBannerModel: (data) => MobileBannerModel.fromJson(data),
+  BannerHeadModel: (data) => BannerHeadModel.fromJson(data),
+  StoreyModel: (data) => StoreyModel.fromJson(data),
 
   // User: (data) => User.fromJson(data),
 };
@@ -35,8 +44,8 @@ final Map<Type, dynamic> modelDecoders = {
 */
 
 final Map<Type, BaseApiService> apiDecoders = {
-  ApiService: ApiService(),
-
+  FlutterService: FlutterService(),
+  ShopService: ShopService(),
   // ...
 };
 
@@ -52,7 +61,8 @@ final Map<Type, BaseApiService> apiDecoders = {
 |--------------------------------------------------------------------------
 */
 final Map<Type, BaseController> controllers = {
-  HomeController: HomeController(),
+  FlutterController: FlutterController(),
+  // ShopController: ShopController(),
 
   // ...
 
